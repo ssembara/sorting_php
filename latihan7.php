@@ -29,34 +29,68 @@ if(isset($_POST['cari'])){
     $cari = $_POST['isi'];
     echo '<br>';
     echo 'Hasil Cari : ';
+    for ($i=0; $i < count($angka) ; $i++) { 
+        if($cari==$angka[$i]){
+            echo 'Angka '.$cari.' berada di Index ke-'.$i;
+        }
+           
+    }
     echo '<br>';
-    echo $cari = 'Index ke-'.$cari." = ".$angka[$cari];
-
 }
 
 if(isset($_POST['asc'])){
-    echo asc($angka);
+    echo '<br>';
+    echo 'Hasil Sorting A-Z';
+    echo '<br>';
+    $angka = asc($angka);
+    echo $angka;
+
+}
+
+if(isset($_POST['desc'])){
+    echo '<br>';
+    echo 'Hasil Sorting A-Z';
+    echo '<br>';
+    $angka = desc($angka);
+    echo $angka;
 
 }
 
 function asc($nilai){
-    $array = $nilai;
-    $p = count($array);
+    $p = count($nilai);
     for ($i=0; $i < $p; $i++) { 
-        for ($j=0; $j < $p; $j++) { 
-            if($array[$j]>$array[$j+1]){
-                $sort = $array[$j];
-                $array[$j] = $array[$j+1];
-                $array[$j+1] = $sort;
+        for ($j=0; $j < $p-1-$i; $j++) { 
+            if($nilai[$j]>$nilai[$j+1]){
+                $sort = $nilai[$j];
+                $nilai[$j] = $nilai[$j+1];
+                $nilai[$j+1] = $sort;
             }
         }
     }
+   
     for ($s=0; $s < $p; $s++) { 
-        echo 'Index ke-'.$s.' = '.$array[$s];
+        echo 'Index ke-'.$s.' = '.$nilai[$s];
         echo '<br>';
     }
 }
 
+function desc($nilai){
+    $p = count($nilai);
+    for ($i=0; $i < $p; $i++) { 
+        for ($j=0; $j < $p-1-$i; $j++) { 
+            if($nilai[$j] < $nilai[$j+1]){
+                $sort = $nilai[$j];
+                $nilai[$j] = $nilai[$j+1];
+                $nilai[$j+1] = $sort;
+            }
+        }
+    }
+   
+    for ($s=0; $s < $p; $s++) { 
+        echo 'Index ke-'.$s.' = '.$nilai[$s];
+        echo '<br>';
+    }
+}
 ?>
 </body>
 </html>
